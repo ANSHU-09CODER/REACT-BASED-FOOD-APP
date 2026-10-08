@@ -1,4 +1,5 @@
 import { RES_CARD_LOGO } from "../utils/constants";
+import{Link} from "react-router-dom";
 const ResataurantsCards = ({ resData }) => {
     const { name, cloudinaryImageId, cuisines, avgRating, costForTwo, sla } = resData;
     return (
