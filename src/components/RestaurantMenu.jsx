@@ -15,30 +15,26 @@ const RestaurantMenu = () => {
   }, []);
 const fetchMenu = async () => {
   try {
-    const targetUrl = MENU_API + resId + "&catalog_qa=undefined&submitAction=ENTER";
-    
-    // AllOrigins Proxy (yeh encode karke leta hai)
-    const proxyUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent(targetUrl);
+    // Ab Swiggy ko direct nahi, apne local server ko call karo
+    const response = await fetch(`http://localhost:5000/api/menu/${resId}`);
 
-    const response = await fetch(proxyUrl);
-    if (!response.ok) throw new Error(`HTTP Error! Status: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(`HTTP Error! Status: ${response.status}`);
+    }
 
     const json = await response.json();
+    console.log("Data received:", json);
+    
+    if (!json?.data) {
+      throw new Error("Invalid data format");
+    }
+
     setResInfo(json.data);
   } catch (err) {
     console.error("Error fetching menu:", err.message);
     setError(true);
   }
 };
-  // --- Error UI ---
-  if (error) {
-    return (
-      <div style={{ textAlign: 'center', marginTop: '100px', fontFamily: 'sans-serif' }}>
-        <h1>Oops! Restaurant data not found 😔</h1>
-        <p>Swiggy API se data fetch nahi ho paaya. Kripya kisi doosre restaurant pe click karein.</p>
-      </div>
-    );
-  }
 
   // --- Loading State (Shimmer) ---
   if (resInfo === null) return <ShimmerMenu />;
