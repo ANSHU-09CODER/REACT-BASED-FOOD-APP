@@ -59,3 +59,18 @@
     background-color: #e0e0e0;
     border-radius: 8px;
 }
+
+/* ---------- Menu page ---------- */
+.menu { max-width: 900px; margin: 0 auto; padding: 16px; }
+.menu-header { display: flex; gap: 20px; margin-bottom: 24px; }
+.menu-header-left img { width: 220px; border-radius: 8px; }
+.menu-header .bottom { display: flex; gap: 16px; align-items: center; }
+.menu-header h4 { display: flex; align-items: center; gap: 4px; }
+.menu-card { display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid #ddd; }
+.menu-card-left { flex: 1; }
+.menu-name { font-size: 18px; }
+.menu-description { color: #666; font-weight: normal; margin-top: 6px; }
+.menu-card-right img { width: 120px; height: 100px; object-fit: cover; border-radius: 8px; }
+
+/* ---------- Error / status ---------- */
+.status-box { text-align: center; margin-top: 100px; }
